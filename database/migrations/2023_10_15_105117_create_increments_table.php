@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('increments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreignId('employee_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->float('basic_total')->nullable();
+            $table->float('house_rent')->nullable();
+            $table->float('medical')->nullable();
+            $table->float('gross_total')->nullable();
+            $table->string('comment')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('increments');
+    }
+};
